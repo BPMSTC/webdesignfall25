@@ -1,0 +1,639 @@
+:root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --accent-color: #ff6b6b;
+    /* Pizza Red */
+    --accent-hover: #ff4757;
+    --good-color: #2ecc71;
+    --bad-color: #e74c3c;
+    --font-main: 'Outfit', sans-serif;
+    --font-display: 'Permanent Marker', cursive;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    padding-bottom: 100px;
+}
+
+h1,
+h2,
+h3 {
+    color: #fff;
+}
+
+/* Header */
+.global-header {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1500&q=80');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid var(--accent-color);
+    margin-bottom: 40px;
+}
+
+.global-header h1 {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    color: var(--accent-color);
+    text-shadow: 3px 3px 0px #000;
+    margin-bottom: 10px;
+}
+
+.global-header p {
+    font-size: 1.2rem;
+    color: #ddd;
+}
+
+/* Sections */
+.demo-section {
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+}
+
+.demo-section h2 {
+    font-size: 2rem;
+    border-left: 5px solid var(--accent-color);
+    padding-left: 15px;
+    margin-bottom: 10px;
+}
+
+.intro-text {
+    margin-bottom: 30px;
+    color: #aaa;
+    font-size: 1.1rem;
+}
+
+/* Comparison Grid */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Example Cards */
+.example-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.example-card.bad {
+    border-top: 4px solid var(--bad-color);
+}
+
+.example-card.good {
+    border-top: 4px solid var(--good-color);
+}
+
+.card-header {
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.card-header h3 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.badge {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.bad .badge {
+    background: rgba(231, 76, 60, 0.2);
+    color: var(--bad-color);
+}
+
+.good .badge {
+    background: rgba(46, 204, 113, 0.2);
+    color: var(--good-color);
+}
+
+.card-content {
+    padding: 30px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Analysis Block */
+.analysis-block {
+    background: #252525;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 4px solid #fff;
+}
+
+.analysis-block h3 {
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.analysis-block p {
+    margin-bottom: 10px;
+    color: #ccc;
+}
+
+.analysis-block code {
+    background: #111;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: monospace;
+    color: var(--accent-color);
+}
+
+/* --- Component Styles (Refined) --- */
+
+/* 1. Navigation */
+.bad-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 10px;
+    background: #222;
+    border-radius: 8px;
+}
+
+.bad-nav-item {
+    color: #888;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+.bad-nav-item:hover {
+    color: var(--accent-color);
+}
+
+.good-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 10px;
+    background: #222;
+    border-radius: 8px;
+}
+
+.good-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.good-nav a:hover {
+    background: var(--accent-color);
+    color: #000;
+}
+
+.good-nav a:focus {
+    outline: 3px solid var(--good-color);
+    outline-offset: 2px;
+    background: #333;
+}
+
+/* 2. Hero */
+.bad-hero {
+    text-align: center;
+    padding: 20px;
+    background: #1a1a1a;
+}
+
+.bad-button {
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background: var(--accent-color);
+    color: white;
+    padding: 10px 20px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.good-hero {
+    text-align: center;
+    padding: 20px;
+    background: #1a1a1a;
+}
+
+.good-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.good-hero .subtitle {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.good-button {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.good-button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.good-button:focus {
+    outline: 3px solid var(--good-color);
+    outline-offset: 2px;
+}
+
+/* 3. Forms */
+.bad-form {
+    width: 100%;
+}
+
+.bad-input {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #444;
+    color: #fff;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.bad-input::placeholder {
+    color: #555;
+}
+
+.bad-checkbox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #555;
+    margin-right: 10px;
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative;
+}
+
+.bad-checkbox.checked {
+    background: var(--accent-color);
+}
+
+.good-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.good-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ddd;
+}
+
+.good-input {
+    width: 100%;
+    padding: 10px;
+    background: #2a2a2a;
+    border: 1px solid #555;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.analysis-block h3 {
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.analysis-block p {
+    margin-bottom: 10px;
+    color: #ccc;
+}
+
+.analysis-block code {
+    background: #111;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: monospace;
+    color: var(--accent-color);
+}
+
+/* --- Component Styles (Refined) --- */
+
+/* 1. Navigation */
+.bad-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 10px;
+    background: #222;
+    border-radius: 8px;
+}
+
+.bad-nav-item {
+    color: #888;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+.bad-nav-item:hover {
+    color: var(--accent-color);
+}
+
+.good-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 10px;
+    background: #222;
+    border-radius: 8px;
+}
+
+.good-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.good-nav a:hover {
+    background: var(--accent-color);
+    color: #000;
+}
+
+.good-nav a:focus {
+    outline: 3px solid var(--good-color);
+    outline-offset: 2px;
+    background: #333;
+}
+
+/* 2. Hero */
+.bad-hero {
+    text-align: center;
+    padding: 20px;
+    background: #1a1a1a;
+}
+
+.bad-button {
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background: var(--accent-color);
+    color: white;
+    padding: 10px 20px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.good-hero {
+    text-align: center;
+    padding: 20px;
+    background: #1a1a1a;
+}
+
+.good-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.good-hero .subtitle {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.good-button {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.good-button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.good-button:focus {
+    outline: 3px solid var(--good-color);
+    outline-offset: 2px;
+}
+
+/* 3. Forms */
+.bad-form {
+    width: 100%;
+}
+
+.bad-input {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #444;
+    color: #fff;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.bad-input::placeholder {
+    color: #555;
+}
+
+.bad-checkbox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #555;
+    margin-right: 10px;
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative;
+}
+
+.bad-checkbox.checked {
+    background: var(--accent-color);
+}
+
+.good-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.good-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ddd;
+}
+
+.good-input {
+    width: 100%;
+    padding: 10px;
+    background: #2a2a2a;
+    border: 1px solid #555;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.good-input:focus {
+    outline: 2px solid var(--good-color);
+    border-color: transparent;
+}
+
+.checkbox-label {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.checkbox-label input {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+fieldset {
+    border: 1px solid #444;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+legend {
+    padding: 0 10px;
+    color: #aaa;
+}
+
+/* 4. Tables */
+.bad-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #444;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.bad-row {
+    display: flex;
+    border-bottom: 1px solid #444;
+}
+
+.bad-row:last-child {
+    border-bottom: none;
+}
+
+.bad-row div {
+    width: 33.33%;
+    flex: none;
+    padding: 10px;
+    text-align: left;
+    color: #ccc;
+}
+
+.bad-row.header {
+    background: #2a2a2a;
+    font-weight: bold;
+    color: #fff;
+}
+
+.good-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #444;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.good-table caption {
+    text-align: left;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #aaa;
+    font-style: italic;
+}
+
+.good-table th,
+.good-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+    color: #ccc;
+}
+
+.good-table th {
+    background: #2a2a2a;
+    color: #fff;
+    font-weight: bold;
+}
+
+.good-table tr:last-child td {
+    border-bottom: none;
+}

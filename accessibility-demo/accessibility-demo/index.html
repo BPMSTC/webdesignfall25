@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Glitchy Pizza Shop - Accessibility Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="global-header">
+        <h1>The Glitchy Pizza Shop 🍕</h1>
+        <p>A study in accessible web design.</p>
+    </header>
+
+    <main>
+        <!-- =====================================================================
+             SECTION 1: NAVIGATION
+             Goal: Compare <div> soup vs Semantic <nav>
+             ===================================================================== -->
+        <section class="demo-section">
+            <h2>1. Navigation</h2>
+            <p class="intro-text">Navigation is the roadmap of your site. If users can't navigate, they can't buy.</p>
+
+            <div class="comparison-grid">
+
+                <!-- BAD EXAMPLE -->
+                <div class="example-card bad">
+                    <div class="card-header">
+                        <h3>❌ The "Bad" Way</h3>
+                        <span class="badge">Inaccessible</span>
+                    </div>
+                    <div class="card-content">
+                        <!-- 
+                            ACCESSIBILITY FAILURES:
+                            1. <div> elements are not focusable by default.
+                            2. No 'role' attribute, so screen readers just see text, not links.
+                            3. 'onclick' works for mouse, but not keyboard (Enter/Space).
+                        -->
+                        <div class="bad-nav">
+                            <div class="bad-nav-item" onclick="alert('Navigating to Menu...')">Menu</div>
+                            <div class="bad-nav-item" onclick="alert('Navigating to Deals...')">Deals</div>
+                            <div class="bad-nav-item" onclick="alert('Navigating to About...')">About</div>
+                            <div class="bad-nav-item" onclick="alert('Navigating to Contact...')">Contact</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GOOD EXAMPLE -->
+                <div class="example-card good">
+                    <div class="card-header">
+                        <h3>✅ The "Good" Way</h3>
+                        <span class="badge">Accessible</span>
+                    </div>
+                    <div class="card-content">
+                        <!-- 
+                            ACCESSIBILITY WINS:
+                            1. <nav> landmark helps screen readers find the menu.
+                            2. <ul> provides structure (list of items).
+                            3. <a> tags are natively focusable and clickable.
+                        -->
+                        <nav class="good-nav">
+                            <ul>
+                                <li><a href="#" onclick="event.preventDefault()">Menu</a></li>
+                                <li><a href="#" onclick="event.preventDefault()">Deals</a></li>
+                                <li><a href="#" onclick="event.preventDefault()">About</a></li>
+                                <li><a href="#" onclick="event.preventDefault()">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ANALYSIS -->
+            <div class="analysis-block">
+                <h3>🧐 Analysis</h3>
+                <p>
+                    The <strong>Bad Example</strong> uses generic <code>&lt;div&gt;</code> tags. While they look like
+                    buttons, the browser doesn't know they are interactive.
+                    Keyboard users cannot tab to them, and screen readers will skip right over them as if they were just
+                    plain text.
+                </p>
+                <p>
+                    The <strong>Good Example</strong> uses semantic HTML. The <code>&lt;nav&gt;</code> element tells
+                    assistive technology "this is navigation".
+                    The <code>&lt;a&gt;</code> tags are automatically added to the tab order, allowing keyboard users to
+                    navigate freely.
+                </p>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             SECTION 2: HERO & HEADINGS
+             Goal: Compare visual hierarchy vs semantic hierarchy
+             ===================================================================== -->
+        <section class="demo-section">
+            <h2>2. Headings & Contrast</h2>
+            <p class="intro-text">Headings create the outline of your content. Contrast ensures it's readable.</p>
+
+            <div class="comparison-grid">
+
+                <!-- BAD EXAMPLE -->
+                <div class="example-card bad">
+                    <div class="card-header">
+                        <h3>❌ The "Bad" Way</h3>
+                        <span class="badge">Inaccessible</span>
+                    </div>
+                    <div class="card-content">
+                        <!-- 
+                            ACCESSIBILITY FAILURES:
+                            1. Using <span> with styles instead of <h1>-<h6> tags. No document structure.
+                            2. Color contrast is too low (grey on black).
+                            3. Button is just a styled div.
+                        -->
+                        <div class="bad-hero">
+                            <span style="font-size: 2rem; font-weight: bold; color: #444;">Welcome to Glitchy
+                                Pizza</span>
+                            <br>
+                            <span style="color: #555; font-size: 1.2rem;">The best pizza in town, probably.</span>
+                            <br><br>
+                            <div class="bad-button" onclick="alert('Order Started')">ORDER NOW</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GOOD EXAMPLE -->
+                <div class="example-card good">
+                    <div class="card-header">
+                        <h3>✅ The "Good" Way</h3>
+                        <span class="badge">Accessible</span>
+                    </div>
+                    <div class="card-content">
+                        <!-- 
+                            ACCESSIBILITY WINS:
+                            1. <h1> defines the main topic of the page.
+                            2. High contrast colors meet WCAG AA standards.
+                            3. <button> element indicates action.
+                        -->
+                        <div class="good-hero">
+                            <h1>Welcome to Glitchy Pizza</h1>
+                            <p class="subtitle">The best pizza in town, probably.</p>
+                            <button class="good-button">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ANALYSIS -->
+            <div class="analysis-block">
+                <h3>🧐 Analysis</h3>
+                <p>
+                    Visually, both examples might look similar to a user with perfect vision. However, the <strong>Bad
+                        Example</strong> relies entirely on CSS for hierarchy.
+                    A screen reader user navigating by "Headings" would find <em>nothing</em> on the page. The low
+                    contrast also makes it unreadable for users with low vision or in bright sunlight.
+                </p>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             SECTION 3: FORMS
+             Goal: Compare placeholders vs labels
+             ===================================================================== -->
+        <section class="demo-section">
+            <h2>3. The Order Form</h2>
+            <p class="intro-text">Forms are where users interact. Ambiguity here leads to lost sales.</p>
+
+            <div class="comparison-grid">
+
+                <!-- BAD EXAMPLE -->
+                <div class="example-card bad">
+                    <div class="card-header">
+                        <h3>❌ The "Bad" Way</h3>
+                        <span class="badge">Inaccessible</span>
+                    </div>
+                    <div class="card-content">
+                        <!-- 
+                            ACCESSIBILITY FAILURES:
+                            1. No <label> tags. Placeholders disappear when typing.
+                            2. Inputs have no accessible name.
+                            3. Checkboxes are custom <span>s, not native inputs.
+                        -->
+                        <div class="bad-form">
+                            <div class="form-group">
+                                <input type="text" placeholder="Name" class="bad-input">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Address" class="bad-input">
+                            </div>
+                            <div class="form-group">
+                                <div style="margin-bottom: 5px; color: #888;">Choose Toppings:</div>
+                                <span class="bad-checkbox" onclick="this.classList.toggle('checked')">Pepperoni</span>
+                                <span class="bad-checkbox" onclick="this.classList.toggle('checked')">Mushrooms</span>
+                            </div>
+                            <div class="bad-button" onclick="alert('Order Placed!')">Submit Order</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GOOD EXAMPLE -->
+                <div class="example-card good">
+                    <div class="card-header">
+                        <h3>✅ The "Good" Way</h3>
+                        <span class="badge">Accessible</span>
+                    </div>
+                    <div class="card-content">
+                        <!-- 
+                            ACCESSIBILITY WINS:
+                            1. Explicit <label> linked via 'for' attribute.
+                            2. <fieldset> groups related checkboxes.
+                            3. Native <input type="checkbox"> handles state automatically.
+                        -->
+                        <form class="good-form" onsubmit="event.preventDefault(); alert('Order Placed!');">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" class="good-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" id="address" class="good-input" required>
+                            </div>
+                            <fieldset class="form-group">
+                                <legend>Choose Toppings:</legend>
+                                <label class="checkbox-label">
+                                    <input type="checkbox"> Pepperoni
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox"> Mushrooms
+                                </label>
+                            </fieldset>
+                            <button type="submit" class="good-button">Submit Order</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ANALYSIS -->
+            <div class="analysis-block">
+                <h3>🧐 Analysis</h3>
+                <p>
+                    The <strong>Bad Example</strong> commits the "Placeholder Sin". Once a user starts typing, the
+                    context ("Name", "Address") vanishes.
+                    Screen readers will often just say "Edit text" without telling the user <em>what</em> to type.
+                    The custom checkboxes are also invisible to assistive tech—users won't know they are checkboxes or
+                    if they are checked.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- =====================================================================
+             SECTION 4: IMAGES & ALT TEXT
+             Goal: Compare missing/bad alt text vs descriptive alt text
+             ===================================================================== -->
+        <section class="demo-section">
+            <h2>4. Images & Alt Text</h2>
+            <p class="intro-text">Images tell a story. Don't let screen reader users miss the plot.</p>
+
+            <div class="comparison-grid">
+
+                <!-- BAD EXAMPLE -->
+                <div class="example-card bad">
+                    <div class="card-header">
+                        <h3>❌ The "Bad" Way</h3>
+                        <span class="badge">Inaccessible</span>
+                    </div>
+                    <div class="card-content">
+                        <!-- 
+                            ACCESSIBILITY FAILURES:
+                            1. No 'alt' attribute: Screen reader reads the filename "pizza_stock_photo_v2.jpg".
+                            2. Redundant 'alt': alt="image of pizza" adds noise ("Image of image of pizza").
+                        -->
+                        <div class="bad-image-container">
+                            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80"
+                                style="width: 100%; border-radius: 8px;">
+                            <p style="margin-top: 10px; font-size: 0.9rem; color: #888;">(Screen reader hears:
+                                "photo-1574071318508...")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GOOD EXAMPLE -->
+                <div class="example-card good">
+                    <div class="card-header">
+                        <h3>✅ The "Good" Way</h3>
+                        <span class="badge">Accessible</span>
+                    </div>
+                    <div class="card-content">
+                        <!-- 
+                            ACCESSIBILITY WINS:
+                            1. Descriptive 'alt': Describes the content and function.
+                            2. Concise: No "Image of..." prefix needed.
+                        -->
+                        <div class="good-image-container">
+                            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80"
+                                alt="Fresh pepperoni pizza with crispy crust on a wooden board"
+                                style="width: 100%; border-radius: 8px;">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ANALYSIS -->
+            <div class="analysis-block">
+                <h3>🧐 Analysis</h3>
+                <p>
+                    Without <code>alt</code> text, a screen reader has no choice but to read the file name, which is
+                    often gibberish (e.g., <code>IMG_5502.jpg</code>).
+                    The <strong>Good Example</strong> provides a concise description of the visual content, allowing
+                    blind users to visualize the product.
+                </p>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             SECTION 5: DATA TABLES
+             Goal: Compare div soup/bad tables vs semantic tables
+             ===================================================================== -->
+        <section class="demo-section">
+            <h2>5. Nutrition Facts (Data Tables)</h2>
+            <p class="intro-text">Tables are for data. Structure allows users to navigate by row and column.</p>
+
+            <div class="comparison-grid">
+
+                <!-- BAD EXAMPLE -->
+                <div class="example-card bad">
+                    <div class="card-header">
+                        <h3>❌ The "Bad" Way</h3>
+                        <span class="badge">Inaccessible</span>
+                    </div>
+                    <div class="card-content">
+                        <!-- 
+                            ACCESSIBILITY FAILURES:
+                            1. Using <div>s to simulate a table grid.
+                            2. No semantic relationship between headers ("Calories") and data ("250").
+                            3. Screen reader reads strictly left-to-right, top-to-bottom, losing context.
+                        -->
+                        <div class="bad-table">
+                            <div class="bad-row header">
+                                <div>Slice Type</div>
+                                <div>Calories</div>
+                                <div>Fat</div>
+                            </div>
+                            <div class="bad-row">
+                                <div>Cheese</div>
+                                <div>250</div>
+                                <div>10g</div>
+                            </div>
+                            <div class="bad-row">
+                                <div>Pepperoni</div>
+                                <div>300</div>
+                                <div>14g</div>
+                            </div>
+                            <div class="bad-row">
+                                <div>Veggie</div>
+                                <div>220</div>
+                                <div>8g</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GOOD EXAMPLE -->
+                <div class="example-card good">
+                    <div class="card-header">
+                        <h3>✅ The "Good" Way</h3>
+                        <span class="badge">Accessible</span>
+                    </div>
+                    <div class="card-content">
+                        <!-- 
+                            ACCESSIBILITY WINS:
+                            1. <table> element defines the structure.
+                            2. <caption> provides a summary.
+                            3. <th> with scope="col" explicitly links headers to data cells.
+                        -->
+                        <table class="good-table">
+                            <caption>Pizza Nutrition Facts</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Slice Type</th>
+                                    <th scope="col">Calories</th>
+                                    <th scope="col">Fat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cheese</td>
+                                    <td>250</td>
+                                    <td>10g</td>
+                                </tr>
+                                <tr>
+                                    <td>Pepperoni</td>
+                                    <td>300</td>
+                                    <td>14g</td>
+                                </tr>
+                                <tr>
+                                    <td>Veggie</td>
+                                    <td>220</td>
+                                    <td>8g</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ANALYSIS -->
+            <div class="analysis-block">
+                <h3>🧐 Analysis</h3>
+                <p>
+                    The <strong>Bad Example</strong> is just a pile of text to a screen reader. There is no way to know
+                    that "300" belongs to "Calories" without remembering the column order.
+                    The <strong>Good Example</strong> allows users to ask "What column am I in?" and hear "Calories".
+                    They can navigate cell-by-cell with full context.
+                </p>
+            </div>
+        </section>
+
+
+        <script src="script.js"></script>
+</body>
+
+</html>
